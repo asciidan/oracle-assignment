@@ -5,8 +5,8 @@
 ## Prerequisites
 
 ```
-Node.js  ^12.16.3
-Yarn     ^1.19.0
+Node.js  >=12.16.3
+Yarn     >=1.19.0
 ```
 
 ## Install dependencies
