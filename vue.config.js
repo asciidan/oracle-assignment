@@ -2,22 +2,17 @@
 const path = require('path')
 
 // See public/index.html
-const HTML_TITLE = 'Oracle Assignment'
+const HTML_TITLE = 'Oracle Assignment - Star Wars Characters'
 
 module.exports = {
   runtimeCompiler: true,
 
   lintOnSave: false,
 
-  css: {
-    extract: process.env.NODE_ENV === 'production',
-    requireModuleExtension: false,
-  },
-
   configureWebpack: {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        '~': path.resolve(__dirname, './src'),
       },
     },
   },
