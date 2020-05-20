@@ -12,6 +12,6 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
  */
 @Component
 export default class Loader extends Vue {
-  @Prop(Boolean) readonly visible: boolean | undefined
+  @Prop(Boolean) readonly visible!: boolean
 }
 </script>
