@@ -3,7 +3,7 @@ import DataTableToolbar from '../Toolbar.vue'
 
 const mockTitle = 'Some title'
 const wrapper = shallowMount(DataTableToolbar, {
-  stubs: ['md-table-toolbar'],
+  stubs: ['md-input', 'md-field'],
 })
 
 describe('Module: DataTableToolbar', () => {

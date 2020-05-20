@@ -15,6 +15,8 @@ const mockData = [
 const wrapper = shallowMount(DataTable, {
   stubs: [
     'md-table',
+    'md-button',
+    'md-table-toolbar',
     'data-table-toolbar',
     'data-table-head',
     'data-table-row',
@@ -24,6 +26,8 @@ const wrapper = shallowMount(DataTable, {
     title: mockTitle,
     columns: mockColumns,
     data: mockData,
+    enablePrev: true,
+    enableNext: false,
   },
 })
 
@@ -38,5 +42,13 @@ describe('Module: DataTable', () => {
 
   it('correctly sets the data prop', () => {
     expect(wrapper.props('data')).toStrictEqual(mockData)
+  })
+
+  it('correctly sets the enablePrev prop', () => {
+    expect(wrapper.props('enablePrev')).toStrictEqual(true)
+  })
+
+  it('correctly sets the enableNext prop', () => {
+    expect(wrapper.props('enableNext')).toStrictEqual(false)
   })
 })

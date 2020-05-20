@@ -16,7 +16,8 @@ jest.mock('@/store/characters', () => {
       response: {
         results: [mockSampleCharacter],
       },
-      loadInitialCharacters: jest.fn(),
+      loadCharacters: jest.fn(),
+      loadAdditionalCharacters: jest.fn(),
     },
   }
 })
@@ -26,9 +27,9 @@ const wrapper = shallowMount(HomePage, {
 })
 
 describe('Page: Home', () => {
-  it('should call loadInitialCharacters from the store', done => {
+  it('should call loadCharacters from the store', done => {
     wrapper.vm.$nextTick(() => {
-      expect(CharactersStore['loadInitialCharacters']).toHaveBeenCalledTimes(1)
+      expect(CharactersStore['loadCharacters']).toHaveBeenCalledTimes(1)
       done()
     })
   })

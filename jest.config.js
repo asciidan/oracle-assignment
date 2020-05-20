@@ -6,4 +6,5 @@ module.exports = {
     '!**/__tests__/**',
     '!**/__mocks__/**',
   ],
+  transformIgnorePatterns: [`/node_modules/(?!lodash-es)`],
 }

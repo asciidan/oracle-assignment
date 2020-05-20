@@ -1,3 +1,4 @@
+import { debounce } from 'lodash-es'
 import {
   Module,
   VuexModule,
@@ -7,7 +8,7 @@ import {
 } from 'vuex-module-decorators'
 import { mapResultCharacter } from './helpers'
 import store from '@/store'
-import { HttpClient } from '@/services'
+import { HttpClient, resolveGetUrl } from '@/services'
 import { CharactersResponse } from '@/abstract'
 
 /**
@@ -44,17 +45,46 @@ class CharactersModule extends VuexModule {
   }
 
   /**
-   * Load all initial characters
+   * Load initial/query characters
    */
   @Action
-  async loadInitialCharacters() {
+  async loadCharacters(searchQuery = '') {
     let response = this.response
 
-    // Show the loader
+    try {
+      const params = { search: searchQuery }
+      const { data } = await HttpClient.get<CharactersResponse>('/people', {
+        params,
+      })
+
+      const resultsPromiseStack = data.results.map(mapResultCharacter)
+      const results = await Promise.all(resultsPromiseStack)
+
+      response = Object.assign({}, data, { results })
+    } catch (e) {
+      // One of the requests has failed
+      this.setError(`Something went wrong while loading the page. ${e.message}`)
+    }
+
+    // Hide the loader
+    this.setLoading(false)
+
+    // Save the response
+    this.setResponse(response)
+  }
+
+  /**
+   * Load additional characters
+   */
+  @Action
+  async loadAdditionalCharacters(url: string) {
+    let response = this.response
+
+    // Hide the loader
     this.setLoading(true)
 
     try {
-      const { data } = await HttpClient.get<CharactersResponse>('/people')
+      const data = await resolveGetUrl<CharactersResponse>(url)
       const resultsPromiseStack = data.results.map(mapResultCharacter)
       const results = await Promise.all(resultsPromiseStack)
 

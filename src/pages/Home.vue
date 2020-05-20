@@ -3,7 +3,12 @@
     :title="tableTitle"
     :columns="tableColumns"
     :data="tableData"
+    :enable-prev="!!previousUrl"
+    :enable-next="!!nextUrl"
     class="characters-table"
+    @search="loadCharacters"
+    @prev="loadAdditionalCharacters(previousUrl)"
+    @next="loadAdditionalCharacters(nextUrl)"
   />
 </template>
 
@@ -13,28 +18,55 @@ import { CharactersStore } from '@/store/characters'
 import DataTable from '@/modules/DataTable/index.vue'
 
 /**
- * Characters table heading title
- */
-const TABLE_TITLE = 'Characters Table'
-
-/**
  * Home page component
  */
 @Component({
   components: { DataTable },
 })
 export default class HomePage extends Vue {
-  readonly tableTitle = TABLE_TITLE
+  readonly tableTitle = 'Characters Table'
   readonly tableColumns = ['Name', 'Height', 'Gender', 'Homeworld']
 
-  // Map characters data from the state
+  /**
+   * Map characters data from the state
+   */
   get tableData() {
     return CharactersStore.response?.results
   }
 
-  // Initialize characters in this lifecycle hook
+  /**
+   * Previous characters url
+   */
+  get previousUrl() {
+    return CharactersStore.response?.previous
+  }
+
+  /**
+   * Next characters url
+   */
+  get nextUrl() {
+    return CharactersStore.response?.next
+  }
+
+  /**
+   * Load initial (or query) all characters
+   */
+  loadCharacters(searchQuery: string) {
+    CharactersStore.loadCharacters(searchQuery)
+  }
+
+  /**
+   * Load additional characters
+   */
+  loadAdditionalCharacters(url: string) {
+    CharactersStore.loadAdditionalCharacters(url)
+  }
+
+  /**
+   * Initialize characters in this lifecycle hook
+   */
   created() {
-    CharactersStore.loadInitialCharacters()
+    CharactersStore.loadCharacters()
   }
 }
 </script>
