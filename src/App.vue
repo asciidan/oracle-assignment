@@ -3,16 +3,10 @@
     <page-header :title="title" />
 
     <main class="main-container">
-      <div class="loader">
-        <md-progress-spinner
-          v-if="isLoading"
-          class="md-accent"
-          md-mode="indeterminate"
-        />
-      </div>
+      <loader :visible="loading" class="loader" />
 
       <div class="centered-container">
-        <router-view v-show="!isLoading" />
+        <router-view v-show="!loading" />
       </div>
     </main>
   </div>
@@ -20,21 +14,23 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Header from '~/modules/Header.vue'
+import { CharactersStore } from '~/store/characters'
+import PageHeader from '~/modules/PageHeader.vue'
+import Loader from '~/modules/Loader.vue'
 
 /**
  * Root App component
  */
 @Component({
-  components: { PageHeader: Header },
+  components: { PageHeader, Loader },
 })
 export default class App extends Vue {
   get title() {
     return document?.title
   }
 
-  get isLoading() {
-    return this.$store.state.characters.loading
+  get loading() {
+    return CharactersStore.loading
   }
 }
 </script>
@@ -66,7 +62,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1.5em;
+  margin: 1.5em 0;
 
   .loader {
     position: absolute;

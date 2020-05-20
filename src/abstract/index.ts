@@ -35,7 +35,7 @@ export interface Planet {
  *   "results": []
  * }
  */
-export interface CharacterResponse {
+export interface CharactersResponse {
   count: number
   next: string | null
   previous: string | null

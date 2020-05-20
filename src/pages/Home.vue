@@ -1,48 +1,46 @@
 <template>
-  <character-list
-    :title="listTitle"
-    :data="charactersData"
-    class="character-table"
+  <data-table
+    :title="tableTitle"
+    :columns="tableColumns"
+    :data="tableData"
+    class="characters-table"
   />
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
-import { mapActions } from 'vuex'
-import { Character } from '~/types'
-import { CharacterActions } from '~/store'
-import CharacterList from '~/modules/CharacterList.vue'
+import { CharactersStore } from '~/store/characters'
+import DataTable from '~/modules/DataTable/index.vue'
 
 /**
- * Character table heading title
+ * Characters table heading title
  */
-const LIST_TITLE = 'Star Wars Characters'
+const TABLE_TITLE = 'Characters Table'
 
 /**
  * Home page component
  */
 @Component({
-  components: { CharacterList },
-  methods: mapActions([CharacterActions.LoadAdditionalCharacters]),
+  components: { DataTable },
 })
 export default class HomePage extends Vue {
-  readonly listTitle = LIST_TITLE
-  loadInitialCharacters!: () => Promise<void>
+  readonly tableTitle = TABLE_TITLE
+  readonly tableColumns = ['Name', 'Height', 'Gender', 'Homeworld']
 
-  // Map charactersData from state
-  get charactersData() {
-    return this.$store.state.characters.response?.results
+  // Map characters data from the state
+  get tableData() {
+    return CharactersStore.response?.results
   }
 
   // Initialize characters in this lifecycle hook
   created() {
-    this.loadInitialCharacters()
+    CharactersStore.loadInitialCharacters()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.character-table {
+.characters-table {
   width: 100%;
 }
 </style>

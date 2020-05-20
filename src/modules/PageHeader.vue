@@ -11,8 +11,11 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
+/**
+ * Page header component
+ */
 @Component
-export default class Header extends Vue {
+export default class PageHeader extends Vue {
   @Prop(String) readonly title: string | undefined
 }
 </script>
@@ -20,16 +23,10 @@ export default class Header extends Vue {
 <style lang="scss" scoped>
 .header-title {
   display: flex;
-  color: inherit;
 
   .header-link {
     color: inherit;
     text-decoration: none;
-
-    // Override MD
-    &:hover {
-      color: inherit;
-    }
   }
 }
 </style>
