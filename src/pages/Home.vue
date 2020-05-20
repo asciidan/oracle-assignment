@@ -1,27 +1,43 @@
 <template>
-  <character-list :title="listTitle" :data="data" class="character-table" />
+  <character-list
+    :title="listTitle"
+    :data="charactersData"
+    class="character-table"
+  />
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
+import { mapActions } from 'vuex'
+import { Character } from '~/types'
+import { CharacterActions } from '~/store'
 import CharacterList from '~/modules/CharacterList.vue'
 
+/**
+ * Character table heading title
+ */
 const LIST_TITLE = 'Star Wars Characters'
 
+/**
+ * Home page component
+ */
 @Component({
   components: { CharacterList },
+  methods: mapActions([CharacterActions.LoadAdditionalCharacters]),
 })
 export default class HomePage extends Vue {
   readonly listTitle = LIST_TITLE
-  data: any = [
-    {
-      name: 'Luke Skywalker',
-      height: '172',
-      gender: 'male',
-      homeworld: 'Tatooine',
-      url: 'https://swapi.dev/api/people/1/',
-    },
-  ]
+  loadInitialCharacters!: () => Promise<void>
+
+  // Map charactersData from state
+  get charactersData() {
+    return this.$store.state.characters.response?.results
+  }
+
+  // Initialize characters in this lifecycle hook
+  created() {
+    this.loadInitialCharacters()
+  }
 }
 </script>
 
