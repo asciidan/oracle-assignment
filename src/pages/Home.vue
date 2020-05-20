@@ -1,31 +1,42 @@
 <template>
-  <data-table
-    :title="tableTitle"
-    :columns="tableColumns"
-    :data="tableData"
-    :enable-prev="!!previousUrl"
-    :enable-next="!!nextUrl"
-    class="characters-table"
-    @search="loadCharacters"
-    @prev="loadAdditionalCharacters(previousUrl)"
-    @next="loadAdditionalCharacters(nextUrl)"
-  />
+  <div class="home-page">
+    <snackbar
+      :visible="showSnackbar"
+      :message="errorMessage"
+      @close="toggleSnackbar(false)"
+    />
+
+    <data-table
+      :title="tableTitle"
+      :columns="tableColumns"
+      :data="tableData"
+      :enable-prev="!!previousUrl"
+      :enable-next="!!nextUrl"
+      class="characters-table"
+      @search="loadCharacters"
+      @prev="loadAdditionalCharacters(previousUrl)"
+      @next="loadAdditionalCharacters(nextUrl)"
+    />
+  </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
 import { CharactersStore } from '@/store/characters'
+import Snackbar from '@/modules/Snackbar.vue'
 import DataTable from '@/modules/DataTable/index.vue'
 
 /**
  * Home page component
  */
 @Component({
-  components: { DataTable },
+  components: { Snackbar, DataTable },
 })
 export default class HomePage extends Vue {
-  readonly tableTitle = 'Characters Table'
+  readonly tableTitle = 'Characters'
   readonly tableColumns = ['Name', 'Height', 'Gender', 'Homeworld']
+
+  showSnackbar = false
 
   /**
    * Map characters data from the state
@@ -49,6 +60,20 @@ export default class HomePage extends Vue {
   }
 
   /**
+   * Snackbar error message
+   */
+  get errorMessage() {
+    return CharactersStore.error
+  }
+
+  @Watch('errorMessage')
+  onError(msg: string) {
+    if (msg) {
+      this.toggleSnackbar(true)
+    }
+  }
+
+  /**
    * Load initial (or query) all characters
    */
   loadCharacters(searchQuery: string) {
@@ -63,6 +88,13 @@ export default class HomePage extends Vue {
   }
 
   /**
+   * Toggle/show error snackbar
+   */
+  toggleSnackbar(show: boolean) {
+    this.showSnackbar = show
+  }
+
+  /**
    * Initialize characters in this lifecycle hook
    */
   created() {
@@ -72,7 +104,11 @@ export default class HomePage extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.characters-table {
-  width: 100%;
+.home-page {
+  display: contents;
+
+  .characters-table {
+    width: 100%;
+  }
 }
 </style>

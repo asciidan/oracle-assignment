@@ -23,7 +23,7 @@ jest.mock('@/store/characters', () => {
 })
 
 const wrapper = shallowMount(HomePage, {
-  stubs: ['data-table'],
+  stubs: ['snackbar', 'data-table'],
 })
 
 describe('Page: Home', () => {

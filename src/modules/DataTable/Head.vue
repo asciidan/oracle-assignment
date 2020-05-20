@@ -12,7 +12,6 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Character } from '@/abstract'
 
 /**
  * Data table head component
