@@ -1,9 +1,10 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import centered from '@storybook/addon-centered/vue'
+import { boolean } from '@storybook/addon-knobs'
 import Loader from '@/modules/Loader.vue'
 
-export default { title: 'Loader', decorators: [withKnobs] }
+export default { title: 'Loader', decorators: [centered] }
 
-export const Component = () => ({
+export const Default = () => ({
   components: { Loader },
   props: {
     visible: {

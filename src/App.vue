@@ -36,22 +36,9 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-// Import the theme engine
-@import '~vue-material/dist/theme/engine';
+// Import theme
+@import '~@/styles/theme.scss';
 
-@include md-register-theme(
-  'default',
-  (
-    primary: md-get-palette-color(blue, A200),
-    accent: md-get-palette-color(red, A200),
-    theme: dark,
-  )
-);
-
-// Apply the theme
-@import '~vue-material/dist/theme/all';
-
-// Normalize CSS
 html,
 body {
   padding: 0;

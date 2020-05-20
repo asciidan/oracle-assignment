@@ -25,6 +25,12 @@ yarn dev
 yarn build
 ```
 
+## Run Storybook
+
+```
+yarn storybook
+```
+
 ## Run unit tests
 
 ```

@@ -19,7 +19,6 @@ const mockCharacter = {
   height: '172',
   gender: 'male',
   homeworld: 'Tatooine',
-  url: 'https://swapi.dev/api/people/1/',
 }
 
 describe('Characters store: helpers', () => {
@@ -29,7 +28,6 @@ describe('Characters store: helpers', () => {
     expect(character.name).toStrictEqual(mockCharacter.name)
     expect(character.height).toStrictEqual(mockCharacter.height)
     expect(character.gender).toStrictEqual(mockCharacter.gender)
-    expect(character.url).toStrictEqual(mockCharacter.url)
     expect(character.homeworld).toStrictEqual('some planet')
 
     done()

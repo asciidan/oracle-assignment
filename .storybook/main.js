@@ -1,3 +1,6 @@
 module.exports = {
-  addons: ['@storybook/addon-knobs/register'],
+  addons: [
+    '@storybook/addon-actions/register',
+    '@storybook/addon-knobs/register',
+  ],
 }
