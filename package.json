@@ -1,6 +1,6 @@
 {
   "name": "oracle-assignment",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Daniel Knotek",
   "license": "UNLICENSED",
   "repository": {
@@ -12,6 +12,7 @@
     "yarn": ">=1.19.0"
   },
   "scripts": {
+    "storybook": "start-storybook -p 3031 --ci",
     "dev": "vue-cli-service serve --port 3000",
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",
@@ -30,8 +31,13 @@
     "vuex-module-decorators": "^0.17.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-centered": "^5.3.18",
+    "@storybook/addon-knobs": "^5.3.18",
+    "@storybook/vue": "^5.3.18",
     "@types/jest": "^24.0.19",
     "@types/lodash-es": "^4.17.3",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
@@ -46,6 +52,8 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "1.0.0-beta.31",
+    "babel-loader": "^8.1.0",
+    "babel-preset-vue": "^2.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.2.2",
@@ -54,7 +62,10 @@
     "node-sass": "^4.12.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
+    "storybook-vue-router": "^1.0.7",
+    "ts-loader": "^7.0.4",
     "typescript": "~3.8.3",
+    "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0"
   }

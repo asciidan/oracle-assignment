@@ -4,8 +4,7 @@
  *   "name": "Luke Skywalker",
  *   "height": "172",
  *   "gender": "male",
- *   "homeworld": "Tatooine",
- *   "url": "https://swapi.dev/api/people/1/"
+ *   "homeworld": "Tatooine"
  * }
  */
 export interface Character {
@@ -13,7 +12,6 @@ export interface Character {
   height: string
   gender: string
   homeworld: string
-  url: string
 }
 
 /**

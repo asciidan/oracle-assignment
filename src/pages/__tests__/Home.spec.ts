@@ -8,7 +8,6 @@ jest.mock('@/store/characters', () => {
     height: '172',
     gender: 'male',
     homeworld: 'Tatooine',
-    url: 'https://swapi.dev/api/people/1/',
   }
 
   return {
@@ -42,6 +41,5 @@ describe('Page: Home', () => {
     expect(tableData?.height).toStrictEqual('172')
     expect(tableData?.gender).toStrictEqual('male')
     expect(tableData?.homeworld).toStrictEqual('Tatooine')
-    expect(tableData?.url).toStrictEqual('https://swapi.dev/api/people/1/')
   })
 })
