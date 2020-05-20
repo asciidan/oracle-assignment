@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Character } from '~/abstract'
+import { Character } from '@/abstract'
 import DataTableToolbar from './Toolbar.vue'
 import DataTableHead from './Head.vue'
 import DataTableRow from './Row.vue'

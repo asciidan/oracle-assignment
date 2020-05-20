@@ -1,5 +1,5 @@
-import { resolveGetUrl } from '~/services'
-import { Character, Planet } from '~/abstract'
+import { resolveGetUrl } from '@/services'
+import { Character, Planet } from '@/abstract'
 
 /**
  * Resolve homeworld URL and map result character

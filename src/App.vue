@@ -14,9 +14,9 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { CharactersStore } from '~/store/characters'
-import PageHeader from '~/modules/PageHeader.vue'
-import Loader from '~/modules/Loader.vue'
+import { CharactersStore } from '@/store/characters'
+import PageHeader from '@/modules/PageHeader.vue'
+import Loader from '@/modules/Loader.vue'
 
 /**
  * Root App component

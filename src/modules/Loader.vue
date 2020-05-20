@@ -1,5 +1,5 @@
 <template>
-  <div v-show="visible">
+  <div v-show="visible" class="loader-wrapper">
     <md-progress-spinner class="md-accent" md-mode="indeterminate" />
   </div>
 </template>

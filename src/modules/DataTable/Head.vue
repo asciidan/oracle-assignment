@@ -1,14 +1,18 @@
 <template>
   <md-table-row>
-    <md-table-head v-for="column in columns" :key="column">{{
-      column
-    }}</md-table-head>
+    <md-table-head
+      v-for="column in columns"
+      :key="column"
+      class="table-head-item"
+    >
+      {{ column }}
+    </md-table-head>
   </md-table-row>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Character } from '~/abstract'
+import { Character } from '@/abstract'
 
 /**
  * Data table head component

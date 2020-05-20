@@ -6,9 +6,9 @@ import {
   getModule,
 } from 'vuex-module-decorators'
 import { mapResultCharacter } from './helpers'
-import store from '~/store'
-import { HttpClient } from '~/services'
-import { CharactersResponse } from '~/abstract'
+import store from '@/store'
+import { HttpClient } from '@/services'
+import { CharactersResponse } from '@/abstract'
 
 /**
  * Characters Vuex store module

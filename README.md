@@ -1,6 +1,6 @@
 # Oracle Assignment
 
-> Frontend service for Oracle Assignment
+> Frontend service for Oracle Assignment - Star Wars Characters
 
 ## Prerequisites
 

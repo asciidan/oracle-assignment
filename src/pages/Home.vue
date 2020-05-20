@@ -9,8 +9,8 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
-import { CharactersStore } from '~/store/characters'
-import DataTable from '~/modules/DataTable/index.vue'
+import { CharactersStore } from '@/store/characters'
+import DataTable from '@/modules/DataTable/index.vue'
 
 /**
  * Characters table heading title
